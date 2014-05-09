@@ -7,3 +7,4 @@ composer.phar
 Thumbs.db
 /public/assets/stylesheets
 node_modules
+/app/database/production.sqlite
