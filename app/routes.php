@@ -11,7 +11,18 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', 'SnippetController@show');
+
+Route::group(array('prefix' => 'admin'), function()
 {
-	return View::make('hello');
+ 
+    Route::get('create',  'SnippetController@create');
+/*     Route::post('create', 'SnippetController@create'); */
+
+    Route::get('edit',  'SnippetController@edit');
+    Route::post('edit', 'SnippetController@store');
+
+    Route::get('destroy',  'SnippetController@destroy');
+    Route::post('destroy', 'SnippetController@destroy');
+
 });
