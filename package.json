@@ -1,0 +1,25 @@
+{
+  "name": "tanzak",
+  "version": "0.0.0",
+  "description": "Tanzak ========== Tanzak - Tanzak is an Inspiratioin Kit. Tanzak helps you make web site with haik very quickly.",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hokuken-inc/tanzak.git"
+  },
+  "author": "Hokuken <customer@hokuken.com>",
+  "license": "GPL v2",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.3.2",
+    "grunt-contrib-less": "~0.9.0",
+    "matchdep": "~0.3.0",
+    "grunt-contrib-copy": "^0.5.0"
+  }
+}
