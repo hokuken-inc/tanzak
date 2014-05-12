@@ -20,7 +20,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('create',  'SnippetController@create');
 /*     Route::post('create', 'SnippetController@create'); */
 
-    Route::get('edit',  'SnippetController@edit');
+    Route::get('edit/{id?}',  'SnippetController@edit');
     Route::post('edit', 'SnippetController@store');
 
     Route::get('destroy',  'SnippetController@destroy');
