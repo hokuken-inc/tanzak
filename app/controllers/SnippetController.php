@@ -94,12 +94,15 @@ class SnippetController extends \BaseController {
      */
     public function show()
     {
-
+        $word = '';
+        $serach_categories = array();
+        $serach_tags = array();
         if (Request::isMethod('post'))
         {
             $word = Input::get('word');
-            $serach_categories = Input::get('category_ids');
-            $snippets = Snippet::setCategories($serach_categories)->search($word)->get();
+            $serach_categories = Input::get('category_ids', array());
+            $serach_tags = Input::get('tag_ids', array());
+            $snippets = Snippet::setTags($serach_tags)->setCategories($serach_categories)->search($word)->get();
         }
         else
         {
@@ -107,9 +110,15 @@ class SnippetController extends \BaseController {
         }
 
         $categories = Category::all();
+        $tags = Tag::all();
+
         $this->layout = View::make('snippets.index')->with(array(
+            'word' => $word,
+            'search_categories' => $serach_categories,
+            'search_tags' => $serach_tags,
             'snippets' => $snippets,
             'categories' => $categories,
+            'tags' => $tags,
             'view'  => 'snippets.search',
         ));
     }
