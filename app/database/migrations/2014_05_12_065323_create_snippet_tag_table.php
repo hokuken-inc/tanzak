@@ -18,7 +18,6 @@ class CreateSnippetTagTable extends Migration {
            $table->increments('id')->unsigned();
            $table->integer('snippet_id')->unsigned();
            $table->integer('tag_id')->unsigned();
-           $table->timestamps();
       });
 	}
 

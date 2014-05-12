@@ -16,7 +16,7 @@ class CreateTagsTable extends Migration {
       Schema::create('tags', function($table)
       {
            $table->increments('id')->unsigned();
-           $table->string('name')->nullable();
+           $table->string('name')->unique();
            $table->timestamps();
       });
 	}
