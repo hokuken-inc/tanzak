@@ -20,16 +20,16 @@
   <thead>
     <tr>
       <th>title</th>
-      <th>category id</th>
       <th>category</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
   @foreach ($snippets as $snippet)
     <tr>
       <td>{{ $snippet->title }}</td>
-      <td>{{ $snippet->category_id }}</td>
-      <td>{{ $snippet->category()->first()->name }}</td>
+      <td class="text-center"><label class="label label-default">{{ $snippet->category()->first()->name }}</label></td>
+      <td>{{ link_to('admin/edit/'.$snippet->id, '編集') }}</td>
     </tr>
   @endforeach
   </tbody>
