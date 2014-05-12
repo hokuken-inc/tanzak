@@ -50,17 +50,35 @@ class SnippetController extends \BaseController {
             $snippet->body        = Input::get('body');
             $snippet->title       = Input::get('title');
             $snippet->category_id = Input::get('category_id');
-            $snippet->tag         = Input::get('tag');
-/*             $snippet->priority    = Input::get('priority'); */
-            
+
             if ($snippet->save())
             {
-                
+                $tags = Input::get('tag');
+                $tags = explode(',', $tags);
+                $tag_ids = array();
+                foreach($tags as $tag)
+                {
+                    $tag = trim($tag);
+                    try
+                    {
+                        $tag_ids[] = Tag::where('name', '=', $tag)->firstOrFail()->id;
+                    }
+                    catch(Illuminate\Database\Eloquent\ModelNotFoundException $e)
+                    {
+                        $instance = new Tag();
+                        $instance->name = $tag;
+                        $snippet->tags()->save($instance);
+                    }
+                }
+                $snippet->tags()->sync(array_merge($snippet->tags->lists('id'), $tag_ids));
             }
             else
             {
                 
             }
+            
+/*             $snippet->priority    = Input::get('priority'); */
+            
             
             return Redirect::to('/');
         }
@@ -76,12 +94,15 @@ class SnippetController extends \BaseController {
      */
     public function show()
     {
-
+        $word = '';
+        $serach_categories = array();
+        $serach_tags = array();
         if (Request::isMethod('post'))
         {
             $word = Input::get('word');
-            $serach_categories = Input::get('category_ids');
-            $snippets = Snippet::setCategories($serach_categories)->search($word)->get();
+            $serach_categories = Input::get('category_ids', array());
+            $serach_tags = Input::get('tag_ids', array());
+            $snippets = Snippet::setTags($serach_tags)->setCategories($serach_categories)->search($word)->get();
         }
         else
         {
@@ -89,9 +110,15 @@ class SnippetController extends \BaseController {
         }
 
         $categories = Category::all();
+        $tags = Tag::all();
+
         $this->layout = View::make('snippets.index')->with(array(
+            'word' => $word,
+            'search_categories' => $serach_categories,
+            'search_tags' => $serach_tags,
             'snippets' => $snippets,
             'categories' => $categories,
+            'tags' => $tags,
             'view'  => 'snippets.search',
         ));
     }

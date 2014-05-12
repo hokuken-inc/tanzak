@@ -14,15 +14,35 @@ class Snippet extends Eloquent {
         return $this->belongsTo('Category');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('Tag');
+    }
+
     /**
-     * search word (i.e Snippet::search)
+     * set tags (i.e Snippet::setTags($tags))
      * @param  Builder $query
-     * @param  string  $word search word
+     * @param  array  $tags
+     * @return Builder $query
+     */
+    public function scopeSetTags($query, $tags)
+    {
+        if (count($tags) > 0)
+        {
+            $snippet_ids = DB::table('snippet_tag')->whereIn('tag_id', $tags)->lists('snippet_id');
+            $query->whereIn('id', $snippet_ids);
+        } 
+        return $query;
+    }
+
+    /**
+     * set categories (i.e Snippet::setCategories($categories))
+     * @param  Builder $query
+     * @param  array  $categories 
      * @return Builder $query
      */
     public function scopeSetCategories($query, $categories)
     {
-        //配列の数だけ繰り返し
         if (count($categories) > 0)
         {
             $query->where(function($subquery) use ($categories)

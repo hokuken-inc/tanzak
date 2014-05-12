@@ -1,19 +1,28 @@
 
 {{ Form::open(array('url' => '/', 'class'=>'form')) }}
   <div class="tanzak-search-word form-group">
-    {{ Form::text('word', '' , array('placeholder'=>'検索', 'class'=>'form-control', 'tabindex'=>1)) }}
+    {{ Form::text('word', e($word), array('placeholder'=>'検索', 'class'=>'form-control', 'tabindex'=>1)) }}
     <i class="tanzak-search-icon glyphicon glyphicon-search"></i>
     <div class="tanzak-search-categories">
-      <div class="btn-group" data-toggle="buttons">
+      <div class="btn-group tanzak-search-btn-group" data-toggle="buttons">
       @foreach ($categories as $category)
-        <label class="btn btn-default btn-xs">
-          <input type="checkbox" name="category_ids[]" value="{{ $category->id }}">{{ $category->name }}
+        <label class="btn btn-default btn-xs {{ in_array($category->id, $search_categories) ? 'active' : '' }}">
+          <input type="checkbox" name="category_ids[]" value="{{ $category->id }}" {{ in_array($category->id, $search_categories) ? 'checked' : '' }}>{{ $category->name }}
         </label>
       @endforeach
       </div>
     </div>
-
   </div>
+  <div class="form-group tanzak-search-tags">
+      <div class="btn-group tanzak-search-btn-group" data-toggle="buttons">
+      @foreach ($tags as $tag)
+        <label class="btn btn-default btn-xs {{ in_array($tag->id, $search_tags) ? 'active' : '' }}">
+          <input type="checkbox" name="tag_ids[]" value="{{ $tag->id }}" {{ in_array($tag->id, $search_tags) ? 'checked' : '' }}>{{ $tag->name }}
+        </label>
+      @endforeach
+      </div>
+  </div>
+  
 {{ Form::close() }}
 
 <table class="table">

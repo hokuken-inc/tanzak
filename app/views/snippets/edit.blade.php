@@ -26,7 +26,7 @@
   </div>
 
   <div class="form-group">
-    {{ Form::text('tag', e($snippet->tag), array('placeholder'=>'タグ', 'class'=>'form-control', 'tabindex'=>5)) }}
+    {{ Form::text('tag', e(join(',', $snippet->tags()->lists('name'))), array('placeholder'=>'タグ', 'class'=>'form-control', 'tabindex'=>5)) }}
   </div>
 
 
