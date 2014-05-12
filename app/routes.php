@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'SnippetController@show');
+Route::post('/', 'SnippetController@show');
 
 Route::group(array('prefix' => 'admin'), function()
 {
