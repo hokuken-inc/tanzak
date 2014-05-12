@@ -50,17 +50,35 @@ class SnippetController extends \BaseController {
             $snippet->body        = Input::get('body');
             $snippet->title       = Input::get('title');
             $snippet->category_id = Input::get('category_id');
-            $snippet->tag         = Input::get('tag');
-/*             $snippet->priority    = Input::get('priority'); */
-            
+
             if ($snippet->save())
             {
-                
+                $tags = Input::get('tag');
+                $tags = explode(',', $tags);
+                $tag_ids = array();
+                foreach($tags as $tag)
+                {
+                    $tag = trim($tag);
+                    try
+                    {
+                        $tag_ids[] = Tag::where('name', '=', $tag)->firstOrFail()->id;
+                    }
+                    catch(Illuminate\Database\Eloquent\ModelNotFoundException $e)
+                    {
+                        $instance = new Tag();
+                        $instance->name = $tag;
+                        $snippet->tags()->save($instance);
+                    }
+                }
+                $snippet->tags()->sync(array_merge($snippet->tags->lists('id'), $tag_ids));
             }
             else
             {
                 
             }
+            
+/*             $snippet->priority    = Input::get('priority'); */
+            
             
             return Redirect::to('/');
         }

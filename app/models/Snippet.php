@@ -14,6 +14,11 @@ class Snippet extends Eloquent {
         return $this->belongsTo('Category');
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany('Tag');
+    }
+
     /**
      * search word (i.e Snippet::search)
      * @param  Builder $query
