@@ -76,10 +76,23 @@ class SnippetController extends \BaseController {
      */
     public function show()
     {
-        $snippets = Snippet::where('')->get();
 
+        if (Request::isMethod('post'))
+        {
+            $word = Input::get('word');
+            $serach_categories = Input::get('category_ids');
+            $snippets = Snippet::setCategories($serach_categories)->search($word)->get();
+        }
+        else
+        {
+            $snippets = Snippet::all();
+        }
+
+        $categories = Category::all();
         $this->layout = View::make('snippets.index')->with(array(
-           'view'  => 'snippets.search',
+            'snippets' => $snippets,
+            'categories' => $categories,
+            'view'  => 'snippets.search',
         ));
     }
 
