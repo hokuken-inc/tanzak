@@ -5,8 +5,8 @@
   <div class="form-group">
     <div class="btn-group" data-toggle="buttons">
       @foreach ($categories as $category)
-        <label class="btn btn-default">
-          <input type="radio" name="category_id" value="{{ $category->id }}"> {{ $category->name }}
+        <label class="btn btn-default {{ ($category->id === $snippet->category_id) ? ' active' : '' }}">
+          <input type="radio" name="category_id" value="{{ $category->id }}" {{ ($category->id === $snippet->category_id) ? ' checked' : '' }}> {{ $category->name }}
         </label>
       @endforeach
       </div>
