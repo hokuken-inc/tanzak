@@ -33,11 +33,21 @@ class SessionController extends BaseController {
                     'email'    => Input::get('email'),
                     'password' => Input::get('password')
                 );
+                $credentials_name = array(
+                    'name'    => Input::get('email'),
+                    'password' => Input::get('password')
+                );
 
                 if (Auth::attempt($credentials))
                 {
                     return Redirect::intended('/');
                 }
+
+                if (Auth::attempt($credentials_name))
+                {
+                    return Redirect::intended('/');
+                }
+
             }
             else
             {
