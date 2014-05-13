@@ -25,21 +25,28 @@
   
 {{ Form::close() }}
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>title</th>
-      <th>category</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  @foreach ($snippets as $snippet)
-    <tr>
-      <td>{{ $snippet->title }}</td>
-      <td class="text-center"><label class="label label-default">{{ $snippet->category()->first()->name }}</label></td>
-      <td>{{ $is_admin ? link_to('admin/edit/'.$snippet->id, '編集') : '' }}</td>
-    </tr>
-  @endforeach
-  </tbody>
-</table>
+
+<div class="tanzak-list">
+  @if($is_admin)
+    <a href="{{ url('admin/create') }}" class="tanzak-add pull-right"><i class="glyphicon glyphicon-plus"></i></a>
+  @endif
+  <table class="table">
+    <thead>
+      <tr>
+        <th>title</th>
+        <th>category</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    @foreach ($snippets as $snippet)
+      <tr>
+        <td>{{ $snippet->title }}</td>
+        <td class="text-center"><label class="label label-default">{{ $snippet->category()->first()->name }}</label></td>
+        <td>{{ $is_admin ? link_to('admin/edit/'.$snippet->id, '編集') : '' }}</td>
+      </tr>
+    @endforeach
+    </tbody>
+  </table>
+</div>
+
