@@ -1,7 +1,110 @@
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web);
 
-// tools
+html, body {
+  height: 100%;
+}
+
+.tanzak-navbar {
+  background-color: rgba(255,255,255,.8);
+  color: #6e7982;
+  border-radius: 0;
+  margin: 0;
+  
+  .navbar-brand {
+    font-family: 'Titillium Web', sans-serif;
+    color: #6e7982;
+  }
+  
+  .navbar-nav {
+    li {
+      a {
+        &:hover,
+        &:focus {
+          color :#e33b00;
+          background-color: transparent;
+        }
+      }
+      
+      &.active {
+        a {
+          &:hover,
+          &:focus {
+            color :#e33b00;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
+}
+
+.tanzak-content
+{
+  padding-top: 50px;
+
+}
+
+.login-body {
+  background-color: #85929D;
+  height: 100%;
+  width: 100%;
+  display: table;
+  
+  .login-wrap {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+
+// list
 //----------
+.tanzak-list {
+  position: relative;
+  margin-top: 50px;
 
+  .tanzak-add {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #85929D;
+    color: #fff;
+    border-radius: 3px;
+    margin:0;
+    padding:0 0;
+    text-align: center;
+    top: 0;
+    right: 0;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    transition: .5s;
+    display: table;
+    font-size: 10px;
+    box-sizing: border-box;
+
+    i {
+      display: table-cell;
+      vertical-align: middle;
+      box-sizing: border-box;
+    }
+
+    &:hover {
+      background-color: #2F3943;
+      width: 40px;
+      height: 40px;
+      top: -15px;
+      right: -15px;
+      text-decoration: none;
+      font-size: 15px;
+    }
+  }
+}
+
+
+// search
+//----------
 
 .tanzak-search-word {
   position:relative;
@@ -10,10 +113,12 @@
     border-width: 0 0 1px 0;
     border-radius: 0;
     padding-left: 40px;
+    outline: none;
+    box-shadow: none;
 
     &:focus {
       outline: none;
-       border-color: #ccc;
+      border-color: #ccc;
       box-shadow: none;
     }
   }
@@ -51,18 +156,19 @@
     border-width: 2px;
     color: #aaa;
     font-weight: bold;
-    
+
     &:hover,
     &:focus {
       color: #fff;
       background-color: #85929D;
       border-color: #85929D;
     }
+    
     &:active,
     &.active {
       color: #fff;
-      background-color: #85929D;
-      border-color: #85929D;
+      background-color: #2F3943;
+      border-color: #2F3943;
       box-shadow: none;
     }
   }
@@ -84,9 +190,9 @@
     }
     &:active,
     &.active {
-      color: #6e7982;
+      color: #2F3943;
       background-color: #fff;
-      border-color: #6e7982;
+      border-color: #2F3943;
       border-width: 2px;
       box-shadow: none;
       box-sizing: border-box;

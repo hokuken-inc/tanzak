@@ -10,20 +10,30 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+Route::filter('auth', function()
+{
+    if ( ! Auth::check())
+    {
+        return Redirect::to('login');
+    }
+});
+
+
+Route::any('login', array('uses' => 'SessionController@login', 'as' => 'login'));
+Route::get('/logout', array('uses' => 'SessionController@logout', 'as' => '/logout'));
 
 Route::get('/', 'SnippetController@show');
 Route::post('/', 'SnippetController@show');
 
-Route::group(array('prefix' => 'admin'), function()
+
+Route::group(array('prefix' => 'admin', 'before'=>'auth'), function()
 {
- 
     Route::get('create',  'SnippetController@create');
-/*     Route::post('create', 'SnippetController@create'); */
 
     Route::get('edit/{id?}',  'SnippetController@edit');
     Route::post('edit', 'SnippetController@store');
 
-    Route::get('destroy',  'SnippetController@destroy');
-    Route::post('destroy', 'SnippetController@destroy');
+    Route::get('destroy/{id?}',  'SnippetController@destroy');
+    Route::post('destroy/{id?}', 'SnippetController@destroy');
 
 });
