@@ -25,6 +25,7 @@ Route::get('/logout', array('uses' => 'SessionController@logout', 'as' => '/logo
 Route::get('/', 'SnippetController@show');
 Route::post('/', 'SnippetController@show');
 
+Route::post('api/search.json', 'ApiController@search');
 
 Route::group(array('prefix' => 'admin', 'before'=>'auth'), function()
 {

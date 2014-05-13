@@ -8,6 +8,8 @@ class Snippet extends Eloquent {
   	 */
   	protected $table = 'snippets';
 
+  	protected $fillable = array('title', 'note', 'category_id', 'body');
+
 
     public function category()
     {
@@ -32,6 +34,29 @@ class Snippet extends Eloquent {
             $snippet_ids = DB::table('snippet_tag')->whereIn('tag_id', $tags)->lists('snippet_id');
             $query->whereIn('id', $snippet_ids);
         } 
+
+        return $query;
+    }
+
+    /**
+     * set tags (i.e Snippet::setTags($tags))
+     * @param  Builder $query
+     * @param  array  $tags
+     * @return Builder $query
+     */
+    public function scopeSetTagsByName($query, $tags)
+    {
+        if (count($tags) > 0)
+        {
+            $ids = Tag::whereIn('name', $tags)->lists('id');
+            if (count($ids) === 0)
+            {
+                $ids = array(0);
+            }
+
+            return $this->scopeSetTags($query, $ids);
+        }
+
         return $query;
     }
 
@@ -52,6 +77,28 @@ class Snippet extends Eloquent {
                   $subquery->where('category_id', '=', $category_id, 'or');
                 }
             });
+        }
+
+        return $query;
+    }
+
+    /**
+     * set categories (i.e Snippet::setCategories($categories))
+     * @param  Builder $query
+     * @param  array  $categories 
+     * @return Builder $query
+     */
+    public function scopeSetCategoriesByName($query, $categories)
+    {
+        if (count($categories) > 0)
+        {
+            $ids = Category::whereIn('name', $categories)->lists('id');
+            if (count($ids) === 0)
+            {
+                $ids = array(0);
+            }
+            
+            return $this->scopeSetCategories($query, $ids);
         }
 
         return $query;

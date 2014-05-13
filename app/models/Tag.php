@@ -7,6 +7,8 @@ class Tag extends Eloquent {
     * @var string
     */
     protected $table = 'tags';
+
+  	protected $fillable = array('name');
     
     public function snippets()
     {
