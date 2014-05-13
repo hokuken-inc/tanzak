@@ -14,6 +14,7 @@
     </div>
   </div>
   <div class="form-group tanzak-search-tags">
+      <label class="tanzak-search-icon-tags"><i class="glyphicon glyphicon-tags"></i></label>
       <div class="btn-group tanzak-search-btn-group" data-toggle="buttons">
       @foreach ($tags as $tag)
         <label class="btn btn-default btn-xs {{ in_array($tag->id, $search_tags) ? 'active' : '' }}">
@@ -43,7 +44,13 @@
       <tr>
         <td>{{ $snippet->title }}</td>
         <td class="text-center"><label class="label label-default">{{ $snippet->category()->first()->name }}</label></td>
-        <td>{{ $is_admin ? link_to('admin/edit/'.$snippet->id, '編集') : '' }}</td>
+        <td class="text-right">
+        @if ($is_admin)
+          <a href="{{ url('admin/edit/'.$snippet->id) }}" class="text-muted" title="編集"><i class="glyphicon glyphicon-pencil"></i></a>&nbsp;&nbsp;
+          <a href="{{ url('admin/destroy/'.$snippet->id) }}" class="text-danger" title="削除" onclick="return confirm('Delete ?');"><i class="glyphicon glyphicon-remove"></i></a>
+        @endif
+
+        </td>
       </tr>
     @endforeach
     </tbody>
