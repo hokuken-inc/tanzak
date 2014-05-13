@@ -7,7 +7,7 @@
       <div class="btn-group tanzak-search-btn-group" data-toggle="buttons">
       @foreach ($categories as $category)
         <label class="btn btn-default btn-xs {{ in_array($category->id, $search_categories) ? 'active' : '' }}">
-          <input type="checkbox" name="category_ids[]" value="{{ $category->id }}" {{ in_array($category->id, $search_categories) ? 'checked' : '' }}>{{ $category->name }}
+          <input type="checkbox" name="categories[]" value="{{ $category->id }}" {{ in_array($category->id, $search_categories) ? 'checked' : '' }}>{{ $category->name }}
         </label>
       @endforeach
       </div>
@@ -17,7 +17,7 @@
       <div class="btn-group tanzak-search-btn-group" data-toggle="buttons">
       @foreach ($tags as $tag)
         <label class="btn btn-default btn-xs {{ in_array($tag->id, $search_tags) ? 'active' : '' }}">
-          <input type="checkbox" name="tag_ids[]" value="{{ $tag->id }}" {{ in_array($tag->id, $search_tags) ? 'checked' : '' }}>{{ $tag->name }}
+          <input type="checkbox" name="tags[]" value="{{ $tag->id }}" {{ in_array($tag->id, $search_tags) ? 'checked' : '' }}>{{ $tag->name }}
         </label>
       @endforeach
       </div>
