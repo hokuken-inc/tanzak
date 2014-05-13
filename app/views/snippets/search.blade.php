@@ -38,7 +38,7 @@
     <tr>
       <td>{{ $snippet->title }}</td>
       <td class="text-center"><label class="label label-default">{{ $snippet->category()->first()->name }}</label></td>
-      <td>{{ link_to('admin/edit/'.$snippet->id, '編集') }}</td>
+      <td>{{ $is_admin ? link_to('admin/edit/'.$snippet->id, '編集') : '' }}</td>
     </tr>
   @endforeach
   </tbody>

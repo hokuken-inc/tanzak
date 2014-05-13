@@ -94,6 +94,9 @@ class SnippetController extends \BaseController {
      */
     public function show()
     {
+        
+        $is_admin = Auth::check();
+        
         $word = '';
         $serach_categories = array();
         $serach_tags = array();
@@ -120,6 +123,7 @@ class SnippetController extends \BaseController {
             'categories' => $categories,
             'tags' => $tags,
             'view'  => 'snippets.search',
+            'is_admin' => $is_admin,
         ));
     }
 
