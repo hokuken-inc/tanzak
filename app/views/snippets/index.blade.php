@@ -18,7 +18,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Tanzak</a>
+      <a class="navbar-brand" href="#">tanzak</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
