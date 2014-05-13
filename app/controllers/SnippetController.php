@@ -103,8 +103,8 @@ class SnippetController extends \BaseController {
         if (Request::isMethod('post'))
         {
             $word = Input::get('word');
-            $serach_categories = Input::get('category_ids', array());
-            $serach_tags = Input::get('tag_ids', array());
+            $serach_categories = Input::get('categories', array());
+            $serach_tags = Input::get('tags', array());
             $snippets = Snippet::setTags($serach_tags)->setCategories($serach_categories)->search($word)->get();
         }
         else
