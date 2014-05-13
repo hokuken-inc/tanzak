@@ -11,6 +11,9 @@
 |
 */
 
+Route::any('login', array('uses' => 'SessionController@login', 'as' => 'login'));
+Route::get('/logout', array('uses' => 'SessionController@logout', 'as' => '/logout'));
+
 Route::get('/', 'SnippetController@show');
 Route::post('/', 'SnippetController@show');
 
