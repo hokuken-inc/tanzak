@@ -146,10 +146,11 @@ class SnippetController extends \BaseController {
             $snippet = new Snippet;
         }
         
-        $this->layout = View::make('snippets.editor')->with(array(
+        $this->layout = View::make('snippets.index')->with(array(
            'snippet' => $snippet,
            'categories' => $categories,
            'view'  => 'snippets.edit',
+           'is_admin' => true,
         ));
     }
 
