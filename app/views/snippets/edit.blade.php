@@ -3,9 +3,9 @@
   {{ Form::hidden('snippet_id', e($snippet->id)) }}
 
   <div class="form-group">
-    <div class="btn-group" data-toggle="buttons">
+    <div class="btn-group tanzak-edit-btn-group" data-toggle="buttons">
       @foreach ($categories as $category)
-        <label class="btn btn-default {{ ($category->id === $snippet->category_id) ? ' active' : '' }}">
+        <label class="btn btn-default btn-sm {{ ($category->id === $snippet->category_id) ? ' active' : '' }}">
           <input type="radio" name="category_id" value="{{ $category->id }}" {{ ($category->id === $snippet->category_id) ? ' checked' : '' }}> {{ $category->name }}
         </label>
       @endforeach
@@ -14,18 +14,22 @@
 
 
   <div class="form-group">
+    <label>タイトル</label>
     {{ Form::text('title', e($snippet->title), array('placeholder'=>'タイトル', 'class'=>'form-control', 'tabindex'=>2)) }}
   </div>
   
   <div class="form-group">
-    {{ Form::textarea('note', e($snippet->note), array('placeholder'=>'説明文', 'class'=>'', 'tabindex'=>3, 'data-exnote'=>'onready')) }}
+    <label>説明文</label>
+    {{ Form::textarea('note', e($snippet->note), array('placeholder'=>'説明文', 'class'=>'form-control', 'tabindex'=>3, 'data-exnote'=>'onready', 'rows'=>2)) }}
   </div>
 
   <div class="form-group">
-    {{ Form::textarea('body', e($snippet->body), array('placeholder'=>'クリックして文章を入力してください。', 'class'=>'', 'tabindex'=>4, 'data-exnote'=>'onready')) }}
+    <label>スニペット</label>
+    {{ Form::textarea('body', e($snippet->body), array('placeholder'=>'クリックして文章を入力してください。', 'class'=>'form-control', 'tabindex'=>4, 'data-exnote'=>'onready')) }}
   </div>
 
   <div class="form-group">
+    <label>タグ</label>
     {{ Form::text('tag', e(join(',', $snippet->tags()->lists('name'))), array('placeholder'=>'タグ', 'class'=>'form-control', 'tabindex'=>5)) }}
   </div>
 

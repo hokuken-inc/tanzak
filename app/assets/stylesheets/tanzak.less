@@ -111,7 +111,7 @@ html, body {
   .form-control {
     border-width: 0 0 1px 0;
     border-radius: 0;
-    padding-left: 25px;
+    padding-left: 30px;
     outline: none;
     box-shadow: none;
 
@@ -125,8 +125,9 @@ html, body {
   .tanzak-search-icon {
     position: absolute;
     left: 0;
-    top: 10px;
+    top: 5px;
     color: #9c9c9c;
+    border-style: none;
   }
 
 
@@ -215,5 +216,42 @@ html, body {
       box-shadow: none;
       box-sizing: border-box;
     }
+  }
+}
+
+
+// edit
+//----------
+
+.tanzak-edit-btn-group {
+  .btn {
+    color: #85929D;
+    font-weight: bold;
+    margin-right:3px;
+    border-radius: 4px;
+    
+    &:not(:first-child):not(:last-child):not(.dropdown-toggle),
+    &:first-child:not(:last-child):not(.dropdown-toggle),
+    &:last-child:not(:first-child), .btn-group>.dropdown-toggle:not(:first-child) {
+      border-radius: 4px;
+    }
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      background-color: #85929D;
+      border-color: #85929D;
+    }
+    
+    &:active,
+    &.active {
+      color: #fff;
+      background-color: #85929D;
+      border-color: #85929D;
+      box-shadow: none;
+    }
+
+
+
   }
 }

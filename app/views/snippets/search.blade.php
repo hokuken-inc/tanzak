@@ -2,7 +2,7 @@
 {{ Form::open(array('url' => '/', 'class'=>'form')) }}
   <div class="tanzak-search-word form-group">
     {{ Form::text('word', e($word), array('placeholder'=>'検索', 'class'=>'form-control', 'tabindex'=>1)) }}
-    <i class="tanzak-search-icon glyphicon glyphicon-search"></i>
+    <button type="submit" class="btn btn-default btn-sm tanzak-search-icon"><i class="glyphicon glyphicon-search"></i></button>
     <div class="tanzak-search-categories">
       <div class="btn-group tanzak-search-btn-group" data-toggle="buttons">
       @foreach ($categories as $category)
